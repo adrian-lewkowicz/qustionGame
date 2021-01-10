@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("questiongame/api")
 public class CategoryController {
@@ -16,8 +18,8 @@ public class CategoryController {
 
     @CrossOrigin
     @GetMapping("/category/getlist")
-    public Page<Category> getListQuestions(Pageable pageable){
-        return categoryRepository.findAll(pageable);
+    public List<Category> getListQuestions(Pageable pageable){
+        return categoryRepository.findAll();
     }
 
     @CrossOrigin

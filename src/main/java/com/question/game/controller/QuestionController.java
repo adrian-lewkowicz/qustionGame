@@ -6,8 +6,13 @@ import com.question.game.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("questiongame/api")
@@ -30,8 +35,24 @@ public class QuestionController {
 
     @CrossOrigin
     @GetMapping("/question/getlist")
-    public Page<Question> getListQuestions(Pageable pageable){
-        return questionRepository.findAll(pageable);
+    public List<Question> getListQuestions(){
+        return questionRepository.findAll();
+    }
+
+    @CrossOrigin
+    @GetMapping("/question/random/{categoryId}/{numberOfQuestions}")
+    public List<Question> getRandomQuestions(@PathVariable String categoryId,
+                                             @PathVariable int numberOfQuestions){
+      /*  List<Question> questions = questionRepository.findAll();
+        List<Question> randomQuestions = new ArrayList<>();
+        List<Question> copy = new ArrayList<>(questions);
+
+        SecureRandom rand = new SecureRandom();
+        for (int i = 0; i < Math.min(numberOfQuestions, questions.size()); i++) {
+            randomQuestions.add( copy.remove( rand.nextInt( copy.size())));
+        }
+        return randomQuestions;*/
+      return questionRepository.getRandomQuestions(categoryId, numberOfQuestions);
     }
 
     @CrossOrigin

@@ -9,7 +9,7 @@ security:
     session-expiry-in-days: 5
   cookie-props:
     max-age-in-minutes: 7200
-    http-only: true
+    http-only: false
     secure: true
     domain: ${DOMAIN}
     path: /
