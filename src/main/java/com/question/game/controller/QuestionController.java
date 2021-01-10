@@ -23,6 +23,12 @@ public class QuestionController {
     }
 
     @CrossOrigin
+    @PutMapping
+    public Question putQuestion( @RequestBody Question question){
+        return questionRepository.save(question);
+    }
+
+    @CrossOrigin
     @GetMapping("/question/getlist")
     public Page<Question> getListQuestions(Pageable pageable){
         return questionRepository.findAll(pageable);
@@ -33,6 +39,7 @@ public class QuestionController {
     public Question getById(@PathVariable Long id){
         return questionRepository.getOne(id);
     }
+
     @CrossOrigin
     @GetMapping("/question/delete/{id}")
     public ResponseEntity<?> deleteQuestion(@PathVariable Long id){
