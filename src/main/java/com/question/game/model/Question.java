@@ -24,8 +24,9 @@ public class Question {
     private String responseB;
     private String responseC;
     private String responseD;
-    private char correct;
+    private String correct;
     private String categoryId;
-    private String userId;
+    private String userEmail;
+    private boolean approved;
 
 }

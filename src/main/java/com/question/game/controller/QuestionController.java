@@ -28,7 +28,7 @@ public class QuestionController {
     }
 
     @CrossOrigin
-    @PutMapping
+    @PutMapping("/question/update")
     public Question putQuestion( @RequestBody Question question){
         return questionRepository.save(question);
     }
