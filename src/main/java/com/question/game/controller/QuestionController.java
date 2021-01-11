@@ -40,18 +40,15 @@ public class QuestionController {
     }
 
     @CrossOrigin
+    @GetMapping("/question/getUserList/{email}")
+    public List<Question> getListUserQuestions(@PathVariable String email){
+        return questionRepository.getUserQuestions(email);
+    }
+
+    @CrossOrigin
     @GetMapping("/question/random/{categoryId}/{numberOfQuestions}")
     public List<Question> getRandomQuestions(@PathVariable String categoryId,
                                              @PathVariable int numberOfQuestions){
-      /*  List<Question> questions = questionRepository.findAll();
-        List<Question> randomQuestions = new ArrayList<>();
-        List<Question> copy = new ArrayList<>(questions);
-
-        SecureRandom rand = new SecureRandom();
-        for (int i = 0; i < Math.min(numberOfQuestions, questions.size()); i++) {
-            randomQuestions.add( copy.remove( rand.nextInt( copy.size())));
-        }
-        return randomQuestions;*/
       return questionRepository.getRandomQuestions(categoryId, numberOfQuestions);
     }
 

@@ -14,4 +14,8 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     List<Question> getRandomQuestions(@Param("categoryId")String categoryId,
                                       @Param("howMuch") int limit);
 
+
+    @Query(nativeQuery=true,
+            value="SELECT *  FROM questions WHERE user_email=:email")
+    List<Question> getUserQuestions(@Param("email")String email);
 }
