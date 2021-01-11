@@ -18,4 +18,8 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     @Query(nativeQuery=true,
             value="SELECT *  FROM questions WHERE user_email=:email")
     List<Question> getUserQuestions(@Param("email")String email);
+
+    @Query(nativeQuery=true,
+            value="SELECT *  FROM questions WHERE approved = false")
+    List<Question> getPendingQuestions();
 }

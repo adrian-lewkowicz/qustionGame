@@ -59,12 +59,18 @@ public class QuestionController {
     }
 
     @CrossOrigin
-    @GetMapping("/question/delete/{id}")
+    @DeleteMapping("/question/delete/{id}")
     public ResponseEntity<?> deleteQuestion(@PathVariable Long id){
         return questionRepository.findById(id).map(question -> {
             questionRepository.delete(question);
             return ResponseEntity.ok().build();
         }).orElseThrow(()->new ResourceNotFoundException("Question not found by Id" + id));
+    }
+
+    @CrossOrigin
+    @GetMapping("/question/getlistPending")
+    public List<Question> getListPendingQuestions(){
+        return questionRepository.getPendingQuestions();
     }
 
 }

@@ -24,4 +24,5 @@ public class Game {
     private int numberOfQuestions;
     private Date date = new Date();
     private String userEmail;
+    private String categoryId;
 }

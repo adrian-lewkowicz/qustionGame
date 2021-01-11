@@ -23,10 +23,11 @@ public class GameController {
     }
 
     @CrossOrigin
-    @GetMapping("/game/userstats/{userEmail}/{daysToBack}")
+    @GetMapping("/game/userstats/{userEmail}/{categoryId}/{daysToBack}")
     public Float getPercentGoodAnswers(@PathVariable String userEmail,
+                                       @PathVariable String categoryId,
                                        @PathVariable int daysToBack){
-        return gameRepository.getPercentGoodAnswers(userEmail, daysToBack);
+        return gameRepository.getPercentGoodAnswers(userEmail, categoryId, daysToBack);
     }
 
     @CrossOrigin
